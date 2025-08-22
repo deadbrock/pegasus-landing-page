@@ -11,7 +11,8 @@ body,
 body {
   /* Background da landing: logo Pegasus fixo + gradientes */
   background-image: url('/pegasus-logo.png'), linear-gradient(135deg, #0A3D91 0%, #1E90FF 100%), radial-gradient(1000px 600px at 10% -10%, rgba(255,255,255,0.08), transparent), radial-gradient(800px 500px at 90% 10%, rgba(255,255,255,0.06), transparent);
-  background-size: cover, auto, auto, auto;
+  /* Logo menor e discreta */
+  background-size: 520px auto, auto, auto, auto;
   background-position: center, center, center, center;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   background-attachment: fixed, scroll, scroll, scroll;
@@ -24,12 +25,21 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(7, 26, 58, 0.45);
+  /* Overlay mais forte para reduzir a intensidade da imagem ao fundo */
+  background: rgba(7, 26, 58, 0.6);
   pointer-events: none;
   z-index: 0;
 }
 
 #root { position: relative; z-index: 1; }
+
+/* Responsividade do tamanho do logo de fundo */
+@media (max-width: 1024px) {
+  body { background-size: 420px auto, auto, auto, auto; }
+}
+@media (max-width: 640px) {
+  body { background-size: 260px auto, auto, auto, auto; }
+}
 
 .glass {
   backdrop-filter: blur(10px);
