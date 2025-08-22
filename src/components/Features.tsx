@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FeatureCard } from './FeatureCard'
 import { Map, Satellite, Boxes, CheckCircle2, Wrench, BarChart3 } from 'lucide-react'
+import { Button } from './ui/Button'
 
 const features = [
   { title: 'Roteirização inteligente', description: 'Reduza tempo e custo de rotas.', icon: Map },
@@ -24,10 +25,13 @@ export function Features() {
         >
           Como o Pegasus ajuda na logística
         </motion.h2>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <FeatureCard key={i} title={f.title} description={f.description} icon={f.icon} />
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Button variant="gradient" size="lg">Quero otimizar minha logística com o Pegasus</Button>
         </div>
       </div>
     </section>

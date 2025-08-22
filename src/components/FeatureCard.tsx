@@ -23,7 +23,7 @@ export function FeatureCard({ title, description, icon: Icon }: Props) {
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl bg-white/10">
-                <Icon className="w-6 h-6" aria-hidden />
+                <Icon className="w-8 h-8 text-cyan-300" aria-hidden />
               </div>
               <CardTitle className="text-white text-lg">{title}</CardTitle>
             </div>

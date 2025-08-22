@@ -9,7 +9,7 @@ const items = [
 
 export function Differentials() {
   return (
-    <section id="ajuda" className="py-20">
+    <section id="ajuda" className="py-20 bg-white/10">
       <div className="container-section">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -22,8 +22,15 @@ export function Differentials() {
         </motion.h2>
         <div className="mt-10 grid md:grid-cols-3 gap-6">
           {items.map((item, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }} className="glass rounded-3xl p-6 border border-white/10">
-              <item.icon className="w-10 h-10" aria-hidden />
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="rounded-3xl p-6 border border-white/10 bg-white/20"
+            >
+              <item.icon className="w-12 h-12 text-cyan-300" aria-hidden />
               <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
               <p className="mt-2 text-white/85">{item.text}</p>
             </motion.div>

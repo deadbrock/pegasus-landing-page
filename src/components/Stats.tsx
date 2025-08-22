@@ -6,7 +6,7 @@ type Stat = { label: string; value: number; prefix?: string; suffix?: string }
 const stats: Stat[] = [
   { label: 'Custos de rota', value: -23, suffix: '%' },
   { label: 'Entregas no prazo', value: 18, prefix: '+', suffix: '%' },
-  { label: 'Tempo de implantação', value: -60, suffix: '%' },
+  { label: 'Tempo de integração', value: -60, suffix: '%' },
 ]
 
 function useCountUp(target: number, durationMs = 1200) {
