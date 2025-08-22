@@ -8,6 +8,7 @@ import { Testimonials } from './components/Testimonials'
 import { FAQ } from './components/FAQ'
 import { CTASection } from './components/CTASection'
 import { Footer } from './components/Footer'
+import { Contact } from './components/Contact'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Stats />
         <Testimonials />
         <FAQ />
+        <Contact />
         <CTASection />
       </main>
       <Footer />
