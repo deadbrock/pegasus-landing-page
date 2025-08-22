@@ -9,10 +9,27 @@ body,
 }
 
 body {
-  /* Gradiente e textura radial leve */
-  background-image: linear-gradient(135deg, #0A3D91 0%, #1E90FF 100%), radial-gradient(1000px 600px at 10% -10%, rgba(255,255,255,0.08), transparent), radial-gradient(800px 500px at 90% 10%, rgba(255,255,255,0.06), transparent);
+  /* Background da landing: logo Pegasus fixo + gradientes */
+  background-image: url('/favicon.svg'), linear-gradient(135deg, #0A3D91 0%, #1E90FF 100%), radial-gradient(1000px 600px at 10% -10%, rgba(255,255,255,0.08), transparent), radial-gradient(800px 500px at 90% 10%, rgba(255,255,255,0.06), transparent);
+  background-size: cover, auto, auto, auto;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, scroll, scroll, scroll;
   color: #fff;
+  position: relative;
 }
+
+/* Overlay semitransparente para legibilidade do conteúdo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 26, 58, 0.45);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
 
 .glass {
   backdrop-filter: blur(10px);
