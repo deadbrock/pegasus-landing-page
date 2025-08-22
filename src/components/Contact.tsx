@@ -7,26 +7,31 @@ export function Contact() {
   const formId = useId()
   const [subject, setSubject] = useState('Dúvida')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    const name = data.get('name') as string
-    const email = data.get('email') as string
-    const phone = data.get('phone') as string
-    const company = (data.get('company') as string) || ''
-    const message = data.get('message') as string
-    const subj = data.get('subject') as string
-
-    // mailto fallback (abre cliente de email do usuário)
-    const mailto = new URL(`mailto:douglas.mds24@gmail.com`)
-    mailto.searchParams.set('subject', `[Pegasus] ${subj} - ${name}`)
-    mailto.searchParams.set('body', `Nome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\nEmpresa: ${company}\nAssunto: ${subj}\n\nMensagem:\n${message}`)
-    window.open(mailto.toString(), '_blank')
-
-    // Redireciona para WhatsApp com mensagem padrão
-    const wa = new URL('https://wa.me/5581993932249')
-    wa.searchParams.set('text', 'Olá, gostaria de mais informações sobre o Pegasus!')
-    window.open(wa.toString(), '_blank')
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries()) as any
+    try {
+      const resp = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '',
+          company: data.company || '',
+          subject: data.subject,
+          message: data.message,
+        }),
+      })
+      if (!resp.ok) throw new Error('Falha ao enviar mensagem')
+      alert('Obrigado por entrar em contato, em breve nosso time responderá!')
+      const wa = new URL('https://wa.me/5581993932249')
+      wa.searchParams.set('text', 'Olá, gostaria de mais informações sobre o Pegasus!')
+      window.open(wa.toString(), '_blank')
+      ;(e.currentTarget as HTMLFormElement).reset()
+    } catch (err) {
+      alert('Não foi possível enviar sua mensagem agora. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -72,7 +77,7 @@ export function Contact() {
             </div>
             <div className="sm:col-span-1">
               <label className="block mb-1 text-sm">Telefone</label>
-              <input required name="phone" className="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 outline-none focus:ring-2 focus:ring-white/60" />
+              <input name="phone" className="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 outline-none focus:ring-2 focus:ring-white/60" />
             </div>
             <div className="sm:col-span-1">
               <label className="block mb-1 text-sm">Empresa (opcional)</label>
